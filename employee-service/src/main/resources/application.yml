@@ -1,0 +1,13 @@
+server:
+  port: 9595
+
+spring:
+  application:
+    name: employee-service
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8061/eureka/
