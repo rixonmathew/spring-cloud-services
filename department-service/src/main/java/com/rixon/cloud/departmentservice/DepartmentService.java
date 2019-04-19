@@ -2,11 +2,9 @@ package com.rixon.cloud.departmentservice;
 
 import com.rixon.cloud.commons.Department;
 import com.rixon.cloud.commons.Employee;
-import org.reactivestreams.Publisher;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -20,6 +18,9 @@ public class DepartmentService {
 
     @Autowired
     private WebClient.Builder loadBalancedWebClientBuilder;
+
+    @Autowired
+    private HttpClientBuilder httpClientBuilder;
 
     public Flux<Department> allDepartments() {
         return Flux.fromIterable(randomDepartments(10));
