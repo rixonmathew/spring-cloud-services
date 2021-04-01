@@ -9,21 +9,29 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Service
 public class DepartmentService {
 
+    private Map<String,Department> allDepartments;
+
+    @PostConstruct
+    public void loadAllDepartments() {
+        allDepartments = randomDepartments(1000).stream()
+                .collect(Collectors.toMap(Department::getCode, Function.identity()));
+    }
+
     @Autowired
     private WebClient.Builder loadBalancedWebClientBuilder;
 
-    @Autowired
-    private HttpClientBuilder httpClientBuilder;
-
     public Flux<Department> allDepartments() {
-        return Flux.fromIterable(randomDepartments(10));
+        return Flux.fromIterable(allDepartments.values());
     }
 
     private List<Department> randomDepartments(int count) {
@@ -37,9 +45,7 @@ public class DepartmentService {
     }
 
     public Mono<Department> byCode(String code) {
-        Department department = new Department();
-        department.setCode(code);
-        return Mono.just(department);
+        return Mono.just(allDepartments.get(code));
     }
 
 
@@ -50,7 +56,5 @@ public class DepartmentService {
                 .uri("/employees")
                 .retrieve()
                 .bodyToFlux(Employee.class);
-
-
     }
 }

@@ -40,7 +40,7 @@ public class DepartmentServiceApplication {
                         request -> ok().body(departmentService.byCode(request.pathVariable("code")),Department.class))
                 .andRoute(GET("/departments/{code}/employees"),
                         request ->ok()
-                                .contentType(MediaType.APPLICATION_STREAM_JSON)
+                                .contentType(MediaType.APPLICATION_NDJSON)
                                 .body(departmentService.byCode(request.pathVariable("code"))
                                         .flatMapMany(departmentService::employees), Employee.class));
     }

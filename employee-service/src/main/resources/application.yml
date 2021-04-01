@@ -11,3 +11,8 @@ eureka:
     fetchRegistry: true
     serviceUrl:
       defaultZone: http://localhost:8061/eureka/
+
+
+info:
+  name: Employee Services
+  category: Red

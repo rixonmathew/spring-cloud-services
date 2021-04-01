@@ -30,7 +30,7 @@ public class EmployeeServiceApplication {
                         request -> ok().body(employeeService.byId(request.pathVariable("id")),Employee.class))
                 .andRoute(GET("/employees/{id}/events"),
                         request ->ok()
-                                .contentType(MediaType.APPLICATION_STREAM_JSON)
+                                .contentType(MediaType.APPLICATION_NDJSON)
                                 .body(employeeService.byId(request.pathVariable("id"))
                                         .flatMapMany(employeeService::events), EmployeeEvent.class));
     }
