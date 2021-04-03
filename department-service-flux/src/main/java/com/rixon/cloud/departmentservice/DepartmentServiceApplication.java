@@ -15,6 +15,7 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import static org.springframework.web.reactive.function.server.RequestPredicates.contentType;
 import static org.springframework.web.reactive.function.server.RouterFunctions.route;
 import static org.springframework.web.reactive.function.server.ServerResponse.ok;
 
@@ -34,11 +35,12 @@ public class DepartmentServiceApplication {
     }
     @Bean
     public RouterFunction<ServerResponse> routerFunction(DepartmentService departmentService) {
-        return route(GET("/departments"),
-                request -> ok().body(departmentService.allDepartments(), Department.class))
-                .andRoute(GET("/departments/{code}"),
+        return route(GET("/flux/departments"),
+                request -> ok()
+                        .body(departmentService.allDepartments(), Department.class))
+                .andRoute(GET("/flux/departments/{code}"),
                         request -> ok().body(departmentService.byCode(request.pathVariable("code")),Department.class))
-                .andRoute(GET("/departments/{code}/employees"),
+                .andRoute(GET("/flux/departments/{code}/employees"),
                         request ->ok()
                                 .contentType(MediaType.APPLICATION_NDJSON)
                                 .body(departmentService.byCode(request.pathVariable("code"))

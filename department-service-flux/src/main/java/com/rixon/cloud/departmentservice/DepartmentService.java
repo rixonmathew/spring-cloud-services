@@ -50,7 +50,7 @@ public class DepartmentService {
 
 
     public Flux<Employee> employees(Department department) {
-        return loadBalancedWebClientBuilder.baseUrl("http://employee-service")
+        return loadBalancedWebClientBuilder.baseUrl("http://employee-service-flux")
                 .build()
                 .get()
                 .uri("/employees")
