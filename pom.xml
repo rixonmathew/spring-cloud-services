@@ -10,14 +10,15 @@
     </parent>
     <groupId>com.rixon.cloud</groupId>
     <artifactId>spring-cloud-services</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>spring-cloud-services</name>
     <description>Spring cloud services </description>
     <packaging>pom</packaging>
 
     <properties>
-        <java.version>11</java.version>
+        <java.version>16</java.version>
         <spring-cloud.version>2020.0.2</spring-cloud.version>
+        <lombok.version>1.18.20</lombok.version>
     </properties>
 
     <modules>
@@ -25,8 +26,10 @@
         <module>config-server</module>
 <!--        <module>zuul-server</module>-->
 <!--        <module>gateway-service</module>-->
-        <module>employee-service</module>
-        <module>department-service</module>
+        <module>employee-service-flux</module>
+        <module>employee-service-webmvc</module>
+        <module>department-service-flux</module>
+        <module>department-service-webmvc</module>
         <module>healthcare-service</module>
         <module>commons</module>
     </modules>
@@ -39,6 +42,11 @@
                 <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

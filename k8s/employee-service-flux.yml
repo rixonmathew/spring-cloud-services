@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-service-flux-app
+  labels:
+    app: employee-service-flux-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app : employee-service-flux-app
+  template:
+    metadata:
+      labels:
+        app: employee-service-flux-app
+    spec:
+      containers:
+        - name: employee-service-flux-app
+          image: rixonmathew/employee-service-flux:0.0.1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9595
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  employee-service-flux-svc
+spec:
+  selector:
+    app:  employee-service-flux-app
+  ports:
+    - port:  80
+      targetPort:  9595

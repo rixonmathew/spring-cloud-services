@@ -9,7 +9,7 @@ public class Employee {
     private String id;
     private String name;
     private String email;
-    private String desingation;
+    private String designation;
     private String department;
     private LocalDate dateOfJoining;
 }
