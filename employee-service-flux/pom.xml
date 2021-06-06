@@ -56,6 +56,7 @@
                 </configuration>
                 <dependencies>
                     <!-- To make this work on JDK 9+ -->
+                    <!-- To make this work on JDK 9+ -->
                     <dependency>
                         <groupId>javax.activation</groupId>
                         <artifactId>javax.activation-api</artifactId>

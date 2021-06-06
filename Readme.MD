@@ -1,1 +1,1 @@
-Collection of spring cloud servers
+A collection of modules to try out new features in spring boot and cloud space.

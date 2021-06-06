@@ -1,5 +1,8 @@
 /target/
+**/target/
 !.mvn/wrapper/maven-wrapper.jar
+dep.txt
+**/dep.txt
 
 ### STS ###
 .apt_generated
