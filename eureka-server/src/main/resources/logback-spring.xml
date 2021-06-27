@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="LOGS" value="/Users/rixonmathew/rixm1ssd/logs/spring-cloud-services" />
+    <property name="LOGS" value="/Users/rixonmathew/rixmbssd/logs/app_logs/spring-cloud-services" />
 
     <appender name="Console"
               class="ch.qos.logback.core.ConsoleAppender">
