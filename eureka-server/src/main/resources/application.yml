@@ -8,13 +8,39 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
+spring: # To resolve bug when multiple network interfaces are present https://github.com/spring-cloud/spring-cloud-commons/blob/main/docs/src/main/asciidoc/spring-cloud-commons.adoc#ignore-network-interfaces
+  cloud:
+    inetutils:
+      preferredNetworks:
+        - 192.168
+        - 10.0
 
 ---
 spring:
   config:
     activate:
-      on-profile: local-p330-single,local-p330-cluster
+      on-profile: local-p330-single
+
+server:
+  ssl:
+    enabled: true
+    key-store: d:\ssl_certificates\server.jks
+    key-store-type: PKCS12
+    key-store-password: password
+    key-alias: localhost
+eureka:
+  instance:
+    hostname: rixp330
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: https://rixp330:8061/eureka/
+---
+spring:
+  config:
+    activate:
+      on-profile: local-p330-cluster
 
 server:
   ssl:
@@ -32,16 +58,40 @@ eureka:
     serviceUrl:
       defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/
 
+
 ---
 spring:
   config:
     activate:
-      on-profile: local-m1mac-single,local-m1mac-cluster
+      on-profile: local-m1mac-single
 
 server:
   ssl:
     enabled: true
-    key-store: /tmp/server.jks
+    key-store: /Users/rixonmathew/local_ssl_certs/server.jks
+    key-store-type: PKCS12
+    key-store-password: password
+    key-alias: localhost
+
+eureka:
+  instance:
+    hostname: rixm1mini
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: https://rixm1mini:8061/eureka/
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-m1mac-cluster
+
+server:
+  ssl:
+    enabled: true
+    key-store: /Users/rixonmathew/local_ssl_certs/server.jks
     key-store-type: PKCS12
     key-store-password: localhost
     key-alias: localhost
@@ -59,14 +109,37 @@ eureka:
 spring:
   config:
     activate:
-      on-profile: local-mbp-single,local-mbp-cluster
+      on-profile: local-mbp-single
 
 server:
   ssl:
     enabled: true
-    key-store: /tmp/server.jks
+    key-store: /Users/rixonmathew/local_ssl_certs/server.jks
     key-store-type: PKCS12
-    key-store-password: localhost
+    key-store-password: password
+    key-alias: localhost
+
+eureka:
+  instance:
+    hostname: rixmbp
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: https://rixmbp:8061/eureka/
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-mbp-cluster
+
+server:
+  ssl:
+    enabled: true
+    key-store: /Users/rixonmathew/local_ssl_certs/server.jks
+    key-store-type: PKCS12
+    key-store-password: password
     key-alias: localhost
 
 eureka:
