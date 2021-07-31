@@ -41,7 +41,6 @@ spring:
   config:
     activate:
       on-profile: local-p330-cluster
-
 server:
   ssl:
     enabled: true
@@ -57,7 +56,8 @@ eureka:
     fetchRegistry: false
     serviceUrl:
       defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/
-
+logging:
+  config: classpath:logback-local-p330-cluster.xml
 
 ---
 spring:
