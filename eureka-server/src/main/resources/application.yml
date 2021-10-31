@@ -1,5 +1,16 @@
 server:
   port: 8061
+  tomcat:
+    accesslog:
+      enabled: true
+      buffered: false
+      directory: D:\app_logs\eureka-server\access_logs
+      max-days: 30
+      prefix: eureka_access
+      request-attributes-enabled: true
+      rename-on-rotate: true
+      
+
 eureka:
   instance:
     hostname: localhost

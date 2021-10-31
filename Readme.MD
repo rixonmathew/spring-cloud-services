@@ -14,7 +14,8 @@ Collection of spring cloud infrastructure services
 
 ### Generating self-signed certificates for local testing
 
-* Ensure certificate to be used is generated on one machine and copied over to all the hosts that are part of the cluster. On mac hosts use keychain for importing and granting trust
+* Ensure certificate to be used is generated on one machine and copied over to all the hosts that are part of the cluster. 
+* On mac hosts use keychain for importing and granting trust
 
 ````
 keytool -keystore server.jks -storepass password -deststoretype pkcs12 -genkeypair -keyalg RSA -alias localhost -validity 3650 -dname "CN=localhost,ou=it,o=self,c=in" -ext "SAN=dns:rixp330,dns:rixm1mini,dns:rixmbp,dns:localhost"
