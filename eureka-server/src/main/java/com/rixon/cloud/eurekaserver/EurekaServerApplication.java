@@ -1,13 +1,10 @@
 package com.rixon.cloud.eurekaserver;
 
-import org.apache.catalina.filters.RequestDumperFilter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.context.annotation.Bean;
-
-import javax.servlet.Filter;
 
 @SpringBootApplication
 @EnableEurekaServer
