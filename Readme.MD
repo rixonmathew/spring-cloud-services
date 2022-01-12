@@ -18,10 +18,13 @@ Collection of spring cloud infrastructure services
 * On mac hosts use keychain for importing and granting trust
 
 ````
-keytool -keystore server.jks -storepass password -deststoretype pkcs12 -genkeypair -keyalg RSA -alias localhost -validity 3650 -dname "CN=localhost,ou=it,o=self,c=in" -ext "SAN=dns:rixp330,dns:rixm1mini,dns:rixmbp,dns:localhost"
+keytool -keystore server.jks -storepass password -deststoretype pkcs12 -genkeypair -keyalg RSA -alias localhost -validity 3650 -dname "CN=localhost,ou=it,o=self,c=in" -ext "SAN=dns:rixp330,dns:rixm1mini,dns:rixmbp,dns:localhost,dns:rixmacmini2011,dns:rixpi1,dns:rixpi2,dns:rixpi3,dns:rixpi4,dns:rixpi5,dns:rixpi6,dns:rixpi7"
 
 #export cert
 keytool -export -alias localhost -file localhost.cer -keystore server.jks -storepass password
+
+# if certs already exists then remove it first before adding
+keytool -delete -alias localhost -cacerts
 
 #import into cacerts
 keytool -import -alias localhost -file localhost.cer -cacerts
