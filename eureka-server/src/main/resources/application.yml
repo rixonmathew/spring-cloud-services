@@ -66,7 +66,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/
+      defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/,https://rixmacmini2011:8061/eureka/
 logging:
   config: classpath:logback-local-p330-cluster.xml
 
@@ -114,7 +114,7 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/
+      defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/,https://rixmacmini2011:8061/eureka/
 
 ---
 spring:
@@ -160,4 +160,51 @@ eureka:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
-      defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/
+      defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/,https://rixmacmini2011:8061/eureka/
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-macmini2011-single
+
+server:
+  ssl:
+    enabled: true
+    key-store: /home/rixon/local_ssl_certs/server.jks
+    key-store-type: PKCS12
+    key-store-password: password
+    key-alias: localhost
+
+eureka:
+  instance:
+    hostname: rixmacmini2011
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: https://rixmacmini2011:8061/eureka/
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local-macmini2011-cluster
+
+server:
+  ssl:
+    enabled: true
+    key-store: /home/rixon/local_ssl_certs/server.jks
+    key-store-type: PKCS12
+    key-store-password: password
+    key-alias: localhost
+
+eureka:
+  instance:
+    hostname: rixmacmini2011
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: https://rixp330:8061/eureka/, https://rixm1mini:8061/eureka/, https://rixmbp:8061/eureka/,https://rixmacmini2011:8061/eureka/
